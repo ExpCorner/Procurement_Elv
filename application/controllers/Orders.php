@@ -82,6 +82,26 @@ class Orders extends Admin_Controller
 				$approval_1 = '<span class="label label-default">Pending</span>';
 			}
 
+			if($value['approval_2'] == 1) {
+				$approval_2 = '<span class="label label-success">Approve</span>';	
+			}
+			else if($value['approval_2'] == 2) {
+				$approval_2 = '<span class="label label-danger">Reject</span>';
+			}
+			else {
+				$approval_2 = '<span class="label label-default">Pending</span>';
+			}
+
+			if($value['approval_3'] == 1) {
+				$approval_3 = '<span class="label label-success">Approve</span>';	
+			}
+			else if($value['approval_3'] == 2) {
+				$approval_3 = '<span class="label label-danger">Reject</span>';
+			}
+			else {
+				$approval_3 = '<span class="label label-default">Pending</span>';
+			}
+
 			$result['data'][$key] = array(
 				$value['bill_no'],
 				$value['customer_name'],
@@ -91,6 +111,8 @@ class Orders extends Admin_Controller
 				// $value['net_amount'],
 				// $paid_status,
 				$approval_1,
+				$approval_2,
+				$approval_3,
 				$buttons
 			);
 		} // /foreach

@@ -194,15 +194,43 @@
                   $found_key_head = array_search($head, array_column($users, 'id'));
                 ?>
                 <div class="form-group">
-                    <label for="paid_status" class="col-sm-5 control-label">Approval 1</label>
+                  <label for="paid_status" class="col-sm-5 control-label">Approval 1</label>
+                  <div class="col-sm-7">
+                    <select type="text" class="form-control" id="approval_1" name="approval_1">
+                      <option value="0">Pending</option>
+                      <option value="1">Approve By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                      <option value="2">Reject By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                    </select>
+                    <script>
+                      $("#approval_1").val('<?= $order_data['order']['approval_1'] ?>');
+                    </script>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="paid_status" class="col-sm-5 control-label">Approval 2</label>
                     <div class="col-sm-7">
-                      <select type="text" class="form-control" id="approval_1" name="approval_1">
+                      <select type="text" class="form-control" id="approval_2" name="approval_2">
                         <option value="0">Pending</option>
                         <option value="1">Approve By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
                         <option value="2">Reject By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
                       </select>
                       <script>
-                        $("#approval_1").val('<?= $order_data['order']['approval_1'] ?>');
+                        $("#approval_2").val('<?= $order_data['order']['approval_2'] ?>');
+                      </script>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="paid_status" class="col-sm-5 control-label">Approval 3</label>
+                    <div class="col-sm-7">
+                      <select type="text" class="form-control" id="approval_3" name="approval_3">
+                        <option value="0">Pending</option>
+                        <option value="1">Approve By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                        <option value="2">Reject By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                      </select>
+                      <script>
+                        $("#approval_3").val('<?= $order_data['order']['approval_3'] ?>');
                       </script>
                     </div>
                   </div>

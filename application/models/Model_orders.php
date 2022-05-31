@@ -114,6 +114,8 @@ class Model_orders extends CI_Model
 	    		'discount' => $this->input->post('discount')??'0',
 	    		'paid_status' => $this->input->post('paid_status'),
 	    		'approval_1' => $this->input->post('approval_1'),
+	    		'approval_2' => $this->input->post('approval_2'),
+	    		'approval_3' => $this->input->post('approval_3'),
 	    		'user_id' => $user_id
 	    	);
 

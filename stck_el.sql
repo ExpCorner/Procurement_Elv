@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 06:05 AM
+-- Generation Time: May 31, 2022 at 06:18 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -213,6 +213,8 @@ CREATE TABLE `orders` (
   `discount` varchar(255) NOT NULL,
   `paid_status` int(11) NOT NULL,
   `approval_1` int(11) NOT NULL DEFAULT 0,
+  `approval_2` int(11) NOT NULL DEFAULT 0,
+  `approval_3` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -220,8 +222,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `bill_no`, `divisions`, `customer_name`, `customer_address`, `customer_phone`, `date_time`, `gross_amount`, `service_charge_rate`, `service_charge`, `vat_charge_rate`, `vat_charge`, `net_amount`, `discount`, `paid_status`, `approval_1`, `user_id`) VALUES
-(4, 'BILPR-19BD', 11, 'Test', '', 'Test', '1653968893', '0', '0', '0', '0', '0', '0', '0', 0, 1, 1);
+INSERT INTO `orders` (`id`, `bill_no`, `divisions`, `customer_name`, `customer_address`, `customer_phone`, `date_time`, `gross_amount`, `service_charge_rate`, `service_charge`, `vat_charge_rate`, `vat_charge`, `net_amount`, `discount`, `paid_status`, `approval_1`, `approval_2`, `approval_3`, `user_id`) VALUES
+(4, 'BILPR-19BD', 11, 'Test', '', 'Test', '1653968893', '0', '0', '0', '0', '0', '0', '0', 0, 1, 0, 0, 1);
 
 -- --------------------------------------------------------
 

@@ -52,7 +52,9 @@
                 <th>Name</th>
                 <th>Phone</th>
                 <th>Date Time</th>
-                <th>Approval status</th>
+                <th>Approval 1</th>
+                <th>Approval 2</th>
+                <th>Approval 3</th>
                 <?php if(in_array('updateOrder', $user_permission) || in_array('viewOrder', $user_permission) || in_array('deleteOrder', $user_permission)): ?>
                   <th>Action</th>
                 <?php endif; ?>
