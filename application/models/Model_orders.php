@@ -10,14 +10,26 @@ class Model_orders extends CI_Model
 	/* get the orders data */
 	public function getOrdersData($id = null)
 	{
+		$user_id = $this->session->userdata('id');
+		$heads = $this->db->query('SELECT id FROM divisions WHERE head = ?', array($user_id))->result_array();
+		$division = implode(', ', array_map(function ($entry) {
+						return ($entry[key($entry)]);
+					}, $heads));
+		if($division==""){$division="''";}
 		if($id) {
 			$sql = "SELECT * FROM orders WHERE id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
 
-		$sql = "SELECT * FROM orders ORDER BY id DESC";
-		$query = $this->db->query($sql);
+		if($user_id == "1"){
+			$sql = "SELECT * FROM orders ORDER BY id DESC";
+			$query = $this->db->query($sql, array($user_id));
+			return $query->result_array();
+		}
+
+		$sql = "SELECT * FROM orders WHERE customer_id = ? OR divisions IN (".$division.") ORDER BY id DESC";
+		$query = $this->db->query($sql, array($user_id));
 		return $query->result_array();
 	}
 
@@ -40,6 +52,7 @@ class Model_orders extends CI_Model
     	$data = array(
     		'bill_no' => $bill_no,
 			'divisions' => $this->input->post('divisions'),
+    		'customer_id' => $this->input->post('customer_id'),
     		'customer_name' => $this->input->post('customer_name'),
     		'customer_address' => $this->input->post('customer_address')??'',
     		'customer_phone' => $this->input->post('customer_phone'),
@@ -102,6 +115,7 @@ class Model_orders extends CI_Model
 
 			$data = array(
 				'divisions' => $this->input->post('divisions'),
+				'customer_id' => $this->input->post('customer_id'),
 				'customer_name' => $this->input->post('customer_name'),
 	    		'customer_address' => $this->input->post('customer_address')??'',
 	    		'customer_phone' => $this->input->post('customer_phone'),

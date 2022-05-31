@@ -57,7 +57,8 @@
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Name</label>
                     <div class="col-sm-7">
-                      <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Enter Name" autocomplete="off" />
+                      <input type="hidden" name="customer_id" value="<?php echo $user_data['id'] ?>" />
+                      <input type="text" class="form-control" id="customer_name" name="customer_name" placeholder="Enter Name" value="<?php echo $user_data['firstname'].' '.$user_data['lastname'] ?>" autocomplete="off" readonly />
                     </div>
                   </div>
 

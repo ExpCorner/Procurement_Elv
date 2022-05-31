@@ -50,6 +50,7 @@ class Orders extends Admin_Controller
 
 			$date_time = $date . ' ' . $time;
 
+			$user_id = $this->session->userdata('id'); 
 			// button
 			$buttons = '';
 
@@ -57,11 +58,11 @@ class Orders extends Admin_Controller
 				$buttons .= '<a target="__blank" href="'.base_url('orders/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
 			}
 
-			if(in_array('updateOrder', $this->permission)) {
+			if(in_array('updateOrder', $this->permission) && $value['customer_id'] == $user_id || $user_id == "1" ) {
 				$buttons .= ' <a href="'.base_url('orders/update/'.$value['id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
 			}
 
-			if(in_array('deleteOrder', $this->permission)) {
+			if(in_array('deleteOrder', $this->permission) && $value['customer_id'] == $user_id || $user_id == "1" ) {
 				$buttons .= ' <button type="button" class="btn btn-default" onclick="removeFunc('.$value['id'].')" data-toggle="modal" data-target="#removeModal"><i class="fa fa-trash"></i></button>';
 			}
 
@@ -157,7 +158,11 @@ class Orders extends Admin_Controller
         	$this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
 
         	$this->data['products'] = $this->model_products->getActiveProductData();  
-        	$this->data['divisions'] = $this->model_divisions->getActiveDivisions();      	
+        	$this->data['divisions'] = $this->model_divisions->getActiveDivisions(); 
+			
+			$user_id = $this->session->userdata('id'); 
+			$user_data = $this->model_users->getUserData($user_id);
+			$this->data['user_data'] = $user_data;    	
 
             $this->render_template('orders/create', $this->data);
         }	
@@ -232,6 +237,11 @@ class Orders extends Admin_Controller
         	$this->data['users'] = $this->model_users->getUserData();   
         	$result = array();
         	$orders_data = $this->model_orders->getOrdersData($id);
+
+			
+			$user_id = $this->session->userdata('id'); 
+			$user_data = $this->model_users->getUserData($user_id);
+			$this->data['user_data'] = $user_data;    	
 
     		$result['order'] = $orders_data;
     		$orders_item = $this->model_orders->getOrdersItemData($orders_data['id']);
