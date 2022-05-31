@@ -49,18 +49,6 @@
             </div>
           <?php endif; ?>
 
-          <div class="box">
-            <div class="box-header">
-              <h3 class="box-title">Total Parking - Report</h3>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="chart">
-                <canvas id="barChart" style="height:250px"></canvas>
-              </div>
-            </div>
-            <!-- /.box-body -->
-          </div>
           <!-- /.box -->
           <div class="box">
             <div class="box-header">
