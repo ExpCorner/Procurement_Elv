@@ -107,6 +107,29 @@
                          ?>></td>
                       </tr>
                       <tr>
+                        <td>Divisions</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createDivision" <?php 
+                        if($serialize_permission) {
+                          if(in_array('createDivision', $serialize_permission)) { echo "checked"; }  
+                        }
+                         ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="updateDivision" <?php 
+                        if($serialize_permission) {
+                          if(in_array('updateDivision', $serialize_permission)) { echo "checked"; }  
+                        }
+                         ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="viewDivision" <?php 
+                        if($serialize_permission) {
+                          if(in_array('viewDivision', $serialize_permission)) { echo "checked"; }  
+                        }
+                         ?>></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="deleteDivision" <?php 
+                        if($serialize_permission) {
+                          if(in_array('deleteDivision', $serialize_permission)) { echo "checked"; }  
+                        }
+                         ?>></td>
+                      </tr>
+                      <tr>
                         <td>Brands</td>
                         <td><input type="checkbox" name="permission[]" id="permission" class="minimal" value="createBrand" <?php if($serialize_permission) {
                           if(in_array('createBrand', $serialize_permission)) { echo "checked"; } 

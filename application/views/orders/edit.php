@@ -61,10 +61,22 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Division</label>
                     <div class="col-sm-7">
                       <input type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Enter Division" value="<?php echo $order_data['order']['customer_address'] ?>" autocomplete="off">
+                    </div>
+                  </div> -->
+                  
+                  <div class="form-group">
+                    <label for="divisions" class="col-sm-5 control-label" style="text-align:left;">Divisions</label>
+                    <div class="col-sm-7">
+                      <select class="form-control" id="divisions" name="divisions">
+                        <option value="">Select Divisions</option>
+                        <?php foreach ($divisions as $k => $v): ?>
+                          <option value="<?php echo $v['id'] ?>" <?php if($order_data['order']['divisions'] == $v['id']) { echo 'selected'; } ?> ><?php echo $v['name'] ?></option> 
+                        <?php endforeach ?>
+                      </select>
                     </div>
                   </div>
 
@@ -124,7 +136,7 @@
                 <br /> <br/>
 
                 <div class="col-md-6 col-xs-12 pull pull-right">
-
+<!-- 
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label">Gross Amount</label>
                     <div class="col-sm-7">
@@ -173,8 +185,29 @@
                       </select>
                     </div>
                   </div>
+                -->
 
-                </div>
+                <?php 
+                  $found_key = array_search($order_data['order']['divisions'], array_column($divisions, 'id'));
+                  $head = $divisions[$found_key]['head'];
+                  
+                  $found_key_head = array_search($head, array_column($users, 'id'));
+                ?>
+                <div class="form-group">
+                    <label for="paid_status" class="col-sm-5 control-label">Approval 1</label>
+                    <div class="col-sm-7">
+                      <select type="text" class="form-control" id="approval_1" name="approval_1">
+                        <option value="0">Pending</option>
+                        <option value="1">Approve By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                        <option value="2">Reject By <?= $users[$found_key_head]['firstname'].' '.$users[$found_key_head]['lastname'] ?></option>
+                      </select>
+                      <script>
+                        $("#approval_1").val('<?= $order_data['order']['approval_1'] ?>');
+                      </script>
+                    </div>
+                  </div>
+
+                </div> 
               </div>
               <!-- /.box-body -->
 

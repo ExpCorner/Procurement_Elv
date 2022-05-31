@@ -14,6 +14,8 @@ class Orders extends Admin_Controller
 
 		$this->load->model('model_orders');
 		$this->load->model('model_products');
+		$this->load->model('model_users');
+		$this->load->model('model_divisions');
 		$this->load->model('model_company');
 	}
 
@@ -70,14 +72,25 @@ class Orders extends Admin_Controller
 				$paid_status = '<span class="label label-warning">Not Paid</span>';
 			}
 
+			if($value['approval_1'] == 1) {
+				$approval_1 = '<span class="label label-success">Approve</span>';	
+			}
+			else if($value['approval_1'] == 2) {
+				$approval_1 = '<span class="label label-danger">Reject</span>';
+			}
+			else {
+				$approval_1 = '<span class="label label-default">Pending</span>';
+			}
+
 			$result['data'][$key] = array(
 				$value['bill_no'],
 				$value['customer_name'],
 				$value['customer_phone'],
 				$date_time,
-				$count_total_item,
-				$value['net_amount'],
-				$paid_status,
+				// $count_total_item,
+				// $value['net_amount'],
+				// $paid_status,
+				$approval_1,
 				$buttons
 			);
 		} // /foreach
@@ -121,7 +134,8 @@ class Orders extends Admin_Controller
         	$this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
         	$this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
 
-        	$this->data['products'] = $this->model_products->getActiveProductData();      	
+        	$this->data['products'] = $this->model_products->getActiveProductData();  
+        	$this->data['divisions'] = $this->model_divisions->getActiveDivisions();      	
 
             $this->render_template('orders/create', $this->data);
         }	
@@ -192,6 +206,8 @@ class Orders extends Admin_Controller
         	$this->data['is_vat_enabled'] = ($company['vat_charge_value'] > 0) ? true : false;
         	$this->data['is_service_enabled'] = ($company['service_charge_value'] > 0) ? true : false;
 
+        	$this->data['divisions'] = $this->model_divisions->getActiveDivisions();
+        	$this->data['users'] = $this->model_users->getUserData();   
         	$result = array();
         	$orders_data = $this->model_orders->getOrdersData($id);
 
@@ -256,6 +272,7 @@ class Orders extends Admin_Controller
 			$order_data = $this->model_orders->getOrdersData($id);
 			$orders_items = $this->model_orders->getOrdersItemData($id);
 			$company_info = $this->model_company->getCompanyData(1);
+        	$divisions = $this->model_divisions->getDivisionData($order_data['divisions']);   
 
 			$order_date = date('d/m/Y', $order_data['date_time']);
 			$paid_status = ($order_data['paid_status'] == 1) ? "Paid" : "Unpaid";
@@ -296,7 +313,7 @@ class Orders extends Admin_Controller
 			        
 			        <b>No. PR:</b> '.$order_data['bill_no'].'<br>
 			        <b>Name:</b> '.$order_data['customer_name'].'<br>
-			        <b>Division:</b> '.$order_data['customer_address'].' <br />
+			        <b>Division:</b> '.$divisions['name'].' <br />
 			        <b>Phone:</b> '.$order_data['customer_phone'].'
 			      </div>
 			      <!-- /.col -->
@@ -338,7 +355,7 @@ class Orders extends Admin_Controller
 
 			    <div class="row">
 			      
-			      <div class="col-xs-6 pull pull-right">
+				<!-- <div class="col-xs-6 pull pull-right">
 
 			        <div class="table-responsive">
 			          <table class="table">
@@ -376,7 +393,7 @@ class Orders extends Admin_Controller
 			            </tr>
 			          </table>
 			        </div>
-			      </div>
+			      </div> -->
 			      <!-- /.col -->
 			    </div>
 			    <!-- /.row -->

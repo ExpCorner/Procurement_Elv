@@ -74,6 +74,13 @@
                         <td><input type="checkbox" name="permission[]" id="permission" value="deleteGroup" class="minimal"></td>
                       </tr>
                       <tr>
+                        <td>Divisions</td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="createDivision" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="updateDivision" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="viewDivision" class="minimal"></td>
+                        <td><input type="checkbox" name="permission[]" id="permission" value="deleteDivision" class="minimal"></td>
+                      </tr>
+                      <tr>
                         <td>Brands</td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="createBrand" class="minimal"></td>
                         <td><input type="checkbox" name="permission[]" id="permission" value="updateBrand" class="minimal"></td>

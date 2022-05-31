@@ -61,10 +61,22 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label" style="text-align:left;">Division</label>
                     <div class="col-sm-7">
                       <input type="text" class="form-control" id="customer_address" name="customer_address" placeholder="Enter Division" autocomplete="off">
+                    </div>
+                  </div> -->
+                  
+                  <div class="form-group">
+                    <label class="col-sm-5 control-label" style="text-align:left;" for="divisions">Divisions</label>
+                    <div class="col-sm-7">
+                      <select class="form-control" id="divisions" name="divisions">
+                        <option value="">Select Divisions</option>
+                        <?php foreach ($divisions as $k => $v): ?>
+                          <option value="<?php echo $v['id'] ?>"><?php echo $v['name'] ?></option>
+                        <?php endforeach ?>
+                      </select>
                     </div>
                   </div>
 
@@ -115,7 +127,7 @@
 
                 <br /> <br/>
 
-                <div class="col-md-6 col-xs-12 pull pull-right">
+                <!-- <div class="col-md-6 col-xs-12 pull pull-right">
 
                   <div class="form-group">
                     <label for="gross_amount" class="col-sm-5 control-label">Gross Amount</label>
@@ -156,7 +168,7 @@
                     </div>
                   </div>
 
-                </div>
+                </div> -->
               </div>
               <!-- /.box-body -->
 

@@ -39,17 +39,18 @@ class Model_orders extends CI_Model
 		$bill_no = 'BILPR-'.strtoupper(substr(md5(uniqid(mt_rand(), true)), 0, 4));
     	$data = array(
     		'bill_no' => $bill_no,
+			'divisions' => $this->input->post('divisions'),
     		'customer_name' => $this->input->post('customer_name'),
-    		'customer_address' => $this->input->post('customer_address'),
+    		'customer_address' => $this->input->post('customer_address')??'',
     		'customer_phone' => $this->input->post('customer_phone'),
     		'date_time' => strtotime(date('Y-m-d h:i:s a')),
-    		'gross_amount' => $this->input->post('gross_amount_value'),
+    		'gross_amount' => $this->input->post('gross_amount_value')??'0',
     		'service_charge_rate' => $this->input->post('service_charge_rate'),
     		'service_charge' => ($this->input->post('service_charge_value') > 0) ?$this->input->post('service_charge_value'):0,
     		'vat_charge_rate' => $this->input->post('vat_charge_rate'),
     		'vat_charge' => ($this->input->post('vat_charge_value') > 0) ? $this->input->post('vat_charge_value') : 0,
-    		'net_amount' => $this->input->post('net_amount_value'),
-    		'discount' => $this->input->post('discount'),
+    		'net_amount' => $this->input->post('net_amount_value')??'0',
+    		'discount' => $this->input->post('discount')??'0',
     		'paid_status' => 2,
     		'user_id' => $user_id
     	);
@@ -100,17 +101,19 @@ class Model_orders extends CI_Model
 			// fetch the order data 
 
 			$data = array(
+				'divisions' => $this->input->post('divisions'),
 				'customer_name' => $this->input->post('customer_name'),
-	    		'customer_address' => $this->input->post('customer_address'),
+	    		'customer_address' => $this->input->post('customer_address')??'',
 	    		'customer_phone' => $this->input->post('customer_phone'),
-	    		'gross_amount' => $this->input->post('gross_amount_value'),
+	    		'gross_amount' => $this->input->post('gross_amount_value')??'0',
 	    		'service_charge_rate' => $this->input->post('service_charge_rate'),
 	    		'service_charge' => ($this->input->post('service_charge_value') > 0) ? $this->input->post('service_charge_value'):0,
 	    		'vat_charge_rate' => $this->input->post('vat_charge_rate'),
 	    		'vat_charge' => ($this->input->post('vat_charge_value') > 0) ? $this->input->post('vat_charge_value') : 0,
-	    		'net_amount' => $this->input->post('net_amount_value'),
-	    		'discount' => $this->input->post('discount'),
+	    		'net_amount' => $this->input->post('net_amount_value')??'0',
+	    		'discount' => $this->input->post('discount')??'0',
 	    		'paid_status' => $this->input->post('paid_status'),
+	    		'approval_1' => $this->input->post('approval_1'),
 	    		'user_id' => $user_id
 	    	);
 

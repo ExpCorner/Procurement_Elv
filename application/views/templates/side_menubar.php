@@ -53,6 +53,13 @@
             </li>
           <?php endif; ?>
 
+          <?php if(in_array('createDivision', $user_permission) || in_array('updateDivision', $user_permission) || in_array('viewDivision', $user_permission) || in_array('deleteDivision', $user_permission)): ?>
+            <li id="divisionNav">
+              <a href="<?php echo base_url('divisions/') ?>">
+                <i class="fa fa-files-o"></i> <span>Divisions</span>
+              </a>
+            </li>
+          <?php endif; ?>
 
           <?php if(in_array('createBrand', $user_permission) || in_array('updateBrand', $user_permission) || in_array('viewBrand', $user_permission) || in_array('deleteBrand', $user_permission)): ?>
             <li id="brandNav">

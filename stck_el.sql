@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.3
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 03:52 AM
+-- Generation Time: May 31, 2022 at 06:05 AM
 -- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.28
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -145,7 +145,29 @@ CREATE TABLE `company` (
 --
 
 INSERT INTO `company` (`id`, `company_name`, `service_charge_value`, `vat_charge_value`, `address`, `phone`, `country`, `message`, `currency`) VALUES
-(1, 'Rumah Sakit Murni Teguh', '13', '10', '--', '--', '--', '<p>--</p>', 'IDR');
+(1, 'Rumah Sakit Murni Teguh', '0', '0', '--', '--', '--', '<p>--</p>', 'IDR');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `divisions`
+--
+
+CREATE TABLE `divisions` (
+  `id` int(11) NOT NULL,
+  `head` int(11) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `active` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `divisions`
+--
+
+INSERT INTO `divisions` (`id`, `head`, `name`, `active`) VALUES
+(10, 6, 'IT', 1),
+(11, 6, 'HR', 1),
+(12, 6, 'Purchasing', 1);
 
 -- --------------------------------------------------------
 
@@ -164,7 +186,7 @@ CREATE TABLE `groups` (
 --
 
 INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
-(1, 'Administrator', 'a:36:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:11:\"createBrand\";i:9;s:11:\"updateBrand\";i:10;s:9:\"viewBrand\";i:11;s:11:\"deleteBrand\";i:12;s:14:\"createCategory\";i:13;s:14:\"updateCategory\";i:14;s:12:\"viewCategory\";i:15;s:14:\"deleteCategory\";i:16;s:11:\"createStore\";i:17;s:11:\"updateStore\";i:18;s:9:\"viewStore\";i:19;s:11:\"deleteStore\";i:20;s:15:\"createAttribute\";i:21;s:15:\"updateAttribute\";i:22;s:13:\"viewAttribute\";i:23;s:15:\"deleteAttribute\";i:24;s:13:\"createProduct\";i:25;s:13:\"updateProduct\";i:26;s:11:\"viewProduct\";i:27;s:13:\"deleteProduct\";i:28;s:11:\"createOrder\";i:29;s:11:\"updateOrder\";i:30;s:9:\"viewOrder\";i:31;s:11:\"deleteOrder\";i:32;s:11:\"viewReports\";i:33;s:13:\"updateCompany\";i:34;s:11:\"viewProfile\";i:35;s:13:\"updateSetting\";}'),
+(1, 'Administrator', 'a:40:{i:0;s:10:\"createUser\";i:1;s:10:\"updateUser\";i:2;s:8:\"viewUser\";i:3;s:10:\"deleteUser\";i:4;s:11:\"createGroup\";i:5;s:11:\"updateGroup\";i:6;s:9:\"viewGroup\";i:7;s:11:\"deleteGroup\";i:8;s:14:\"createDivision\";i:9;s:14:\"updateDivision\";i:10;s:12:\"viewDivision\";i:11;s:14:\"deleteDivision\";i:12;s:11:\"createBrand\";i:13;s:11:\"updateBrand\";i:14;s:9:\"viewBrand\";i:15;s:11:\"deleteBrand\";i:16;s:14:\"createCategory\";i:17;s:14:\"updateCategory\";i:18;s:12:\"viewCategory\";i:19;s:14:\"deleteCategory\";i:20;s:11:\"createStore\";i:21;s:11:\"updateStore\";i:22;s:9:\"viewStore\";i:23;s:11:\"deleteStore\";i:24;s:15:\"createAttribute\";i:25;s:15:\"updateAttribute\";i:26;s:13:\"viewAttribute\";i:27;s:15:\"deleteAttribute\";i:28;s:13:\"createProduct\";i:29;s:13:\"updateProduct\";i:30;s:11:\"viewProduct\";i:31;s:13:\"deleteProduct\";i:32;s:11:\"createOrder\";i:33;s:11:\"updateOrder\";i:34;s:9:\"viewOrder\";i:35;s:11:\"deleteOrder\";i:36;s:11:\"viewReports\";i:37;s:13:\"updateCompany\";i:38;s:11:\"viewProfile\";i:39;s:13:\"updateSetting\";}'),
 (4, 'Purchasing', 'a:24:{i:0;s:11:\"createBrand\";i:1;s:11:\"updateBrand\";i:2;s:9:\"viewBrand\";i:3;s:11:\"deleteBrand\";i:4;s:14:\"createCategory\";i:5;s:14:\"updateCategory\";i:6;s:12:\"viewCategory\";i:7;s:14:\"deleteCategory\";i:8;s:11:\"createStore\";i:9;s:11:\"updateStore\";i:10;s:9:\"viewStore\";i:11;s:11:\"deleteStore\";i:12;s:15:\"createAttribute\";i:13;s:15:\"updateAttribute\";i:14;s:13:\"viewAttribute\";i:15;s:15:\"deleteAttribute\";i:16;s:13:\"createProduct\";i:17;s:13:\"updateProduct\";i:18;s:11:\"viewProduct\";i:19;s:11:\"createOrder\";i:20;s:11:\"updateOrder\";i:21;s:9:\"viewOrder\";i:22;s:11:\"deleteOrder\";i:23;s:11:\"viewProfile\";}'),
 (5, 'User', 'a:4:{i:0;s:11:\"createOrder\";i:1;s:11:\"updateOrder\";i:2;s:9:\"viewOrder\";i:3;s:11:\"deleteOrder\";}');
 
@@ -177,6 +199,7 @@ INSERT INTO `groups` (`id`, `group_name`, `permission`) VALUES
 CREATE TABLE `orders` (
   `id` int(11) NOT NULL,
   `bill_no` varchar(255) NOT NULL,
+  `divisions` int(11) NOT NULL DEFAULT 0,
   `customer_name` varchar(255) NOT NULL,
   `customer_address` varchar(255) NOT NULL,
   `customer_phone` varchar(255) NOT NULL,
@@ -189,6 +212,7 @@ CREATE TABLE `orders` (
   `net_amount` varchar(255) NOT NULL,
   `discount` varchar(255) NOT NULL,
   `paid_status` int(11) NOT NULL,
+  `approval_1` int(11) NOT NULL DEFAULT 0,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -196,8 +220,8 @@ CREATE TABLE `orders` (
 -- Dumping data for table `orders`
 --
 
-INSERT INTO `orders` (`id`, `bill_no`, `customer_name`, `customer_address`, `customer_phone`, `date_time`, `gross_amount`, `service_charge_rate`, `service_charge`, `vat_charge_rate`, `vat_charge`, `net_amount`, `discount`, `paid_status`, `user_id`) VALUES
-(2, 'BILPR-D314', 'test', 'test', 'test', '1653961513', '100000.00', '13', '13000.00', '10', '10000.00', '123000.00', '', 1, 1);
+INSERT INTO `orders` (`id`, `bill_no`, `divisions`, `customer_name`, `customer_address`, `customer_phone`, `date_time`, `gross_amount`, `service_charge_rate`, `service_charge`, `vat_charge_rate`, `vat_charge`, `net_amount`, `discount`, `paid_status`, `approval_1`, `user_id`) VALUES
+(4, 'BILPR-19BD', 11, 'Test', '', 'Test', '1653968893', '0', '0', '0', '0', '0', '0', '0', 0, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -219,7 +243,7 @@ CREATE TABLE `orders_item` (
 --
 
 INSERT INTO `orders_item` (`id`, `order_id`, `product_id`, `qty`, `rate`, `amount`) VALUES
-(4, 2, 2, '1', '100000', '100000.00');
+(15, 4, 2, '1', '100000', '100000.00');
 
 -- --------------------------------------------------------
 
@@ -247,7 +271,7 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `sku`, `price`, `qty`, `image`, `description`, `attribute_value_id`, `brand_id`, `category_id`, `store_id`, `availability`) VALUES
-(2, 'Test', 'test', '100000', '19', '<p>You did not select a file to upload.</p>', '<p>-- </p>', '[\"14\",\"15\"]', 'null', '[\"3\"]', 3, 1);
+(2, 'Test', 'test', '100000', '17', '<p>You did not select a file to upload.</p>', '<p>-- </p>', '[\"14\",\"15\"]', 'null', '[\"3\"]', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -290,7 +314,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `password`, `email`, `firstname`, `lastname`, `phone`, `gender`) VALUES
-(1, 'admin', '$2y$10$yfi5nUQGXUZtMdl27dWAyOd/jMOmATBpiUvJDmUu9hJ5Ro6BE5wsK', 'admin@admin.com', '--', '--', '--', 1);
+(1, 'admin', '$2y$10$yfi5nUQGXUZtMdl27dWAyOd/jMOmATBpiUvJDmUu9hJ5Ro6BE5wsK', 'admin@admin.com', '--', '--', '--', 1),
+(6, 'user001', '$2y$10$VQF4wPfnoCpkfRd1tDE.AOXtVIVqpeWAtHYWX.QGQL9rZbS2OamKW', 'user001@gmail.com', 'User', '001', '--', 1);
 
 -- --------------------------------------------------------
 
@@ -309,7 +334,8 @@ CREATE TABLE `user_group` (
 --
 
 INSERT INTO `user_group` (`id`, `user_id`, `group_id`) VALUES
-(1, 1, 1);
+(1, 1, 1),
+(7, 6, 5);
 
 --
 -- Indexes for dumped tables
@@ -407,7 +433,7 @@ ALTER TABLE `attribute_value`
 -- AUTO_INCREMENT for table `brands`
 --
 ALTER TABLE `brands`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -431,13 +457,13 @@ ALTER TABLE `groups`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `orders_item`
 --
 ALTER TABLE `orders_item`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `products`
@@ -455,13 +481,13 @@ ALTER TABLE `stores`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `user_group`
 --
 ALTER TABLE `user_group`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
