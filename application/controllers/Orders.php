@@ -58,7 +58,7 @@ class Orders extends Admin_Controller
 				$buttons .= '<a target="__blank" href="'.base_url('orders/printDiv/'.$value['id']).'" class="btn btn-default"><i class="fa fa-print"></i></a>';
 			}
 
-			if(in_array('updateOrder', $this->permission) && $value['customer_id'] == $user_id || $user_id == "1" ) {
+			if(in_array('updateOrder', $this->permission)) {
 				$buttons .= ' <a href="'.base_url('orders/update/'.$value['id']).'" class="btn btn-default"><i class="fa fa-pencil"></i></a>';
 			}
 

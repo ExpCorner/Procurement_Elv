@@ -193,9 +193,12 @@
                   $head = $divisions[$found_key]['head'];
                   
                   $found_key_head = array_search($head, array_column($users, 'id'));
+
+                  $user_id = $this->session->userdata('id'); 
+                  if($head == $user_id){
                 ?>
                 <div class="form-group">
-                  <label for="paid_status" class="col-sm-5 control-label">Approval 1</label>
+                  <label for="paid_status" class="col-sm-5 control-label">Head Approval</label>
                   <div class="col-sm-7">
                     <select type="text" class="form-control" id="approval_1" name="approval_1">
                       <option value="0">Pending</option>
@@ -209,7 +212,7 @@
                 </div>
                 
                 <div class="form-group">
-                    <label for="paid_status" class="col-sm-5 control-label">Approval 2</label>
+                    <label for="paid_status" class="col-sm-5 control-label">Head (non)medis Approval</label>
                     <div class="col-sm-7">
                       <select type="text" class="form-control" id="approval_2" name="approval_2">
                         <option value="0">Pending</option>
@@ -223,7 +226,7 @@
                   </div>
                   
                   <div class="form-group">
-                    <label for="paid_status" class="col-sm-5 control-label">Approval 3</label>
+                    <label for="paid_status" class="col-sm-5 control-label">Direktur Approval</label>
                     <div class="col-sm-7">
                       <select type="text" class="form-control" id="approval_3" name="approval_3">
                         <option value="0">Pending</option>
@@ -235,6 +238,9 @@
                       </script>
                     </div>
                   </div>
+                  <?php 
+                  }
+                  ?>
 
                 </div> 
               </div>
