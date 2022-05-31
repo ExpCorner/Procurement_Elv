@@ -296,7 +296,7 @@ class Orders extends Admin_Controller
 			        
 			        <b>No. PR:</b> '.$order_data['bill_no'].'<br>
 			        <b>Name:</b> '.$order_data['customer_name'].'<br>
-			        <b>Address:</b> '.$order_data['customer_address'].' <br />
+			        <b>Division:</b> '.$order_data['customer_address'].' <br />
 			        <b>Phone:</b> '.$order_data['customer_phone'].'
 			      </div>
 			      <!-- /.col -->
