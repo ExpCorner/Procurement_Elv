@@ -1,1 +1,1 @@
-ALTER TABLE `orders` ADD `customer_id` INT NOT NULL AFTER `divisions`;
+ALTER TABLE `company` ADD `head_nonmedis` INT NOT NULL DEFAULT '0' AFTER `company_name`, ADD `director` INT NOT NULL DEFAULT '0' AFTER `head_nonmedis`;

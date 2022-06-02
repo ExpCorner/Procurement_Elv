@@ -13,6 +13,7 @@ class Company extends Admin_Controller
 		$this->data['page_title'] = 'Company';
 
 		$this->load->model('model_company');
+		$this->load->model('model_users');
 	}
 
     /* 
@@ -38,6 +39,8 @@ class Company extends Admin_Controller
 
         	$data = array(
         		'company_name' => $this->input->post('company_name'),
+        		'head_nonmedis' => $this->input->post('head_nonmedis'),
+        		'director' => $this->input->post('director'),
         		'service_charge_value' => $this->input->post('service_charge_value'),
         		'vat_charge_value' => $this->input->post('vat_charge_value'),
         		'address' => $this->input->post('address'),
@@ -66,6 +69,8 @@ class Company extends Admin_Controller
             
             $this->data['currency_symbols'] = $this->currency();
         	$this->data['company_data'] = $this->model_company->getCompanyData(1);
+			$users_data = $this->model_users->getUserData();
+			$this->data['users_data'] = $users_data;
 			$this->render_template('company/index', $this->data);			
         }	
 

@@ -16,13 +16,17 @@ class Model_orders extends CI_Model
 						return ($entry[key($entry)]);
 					}, $heads));
 		if($division==""){$division="''";}
+
+		$head_nonmed = $this->db->query('SELECT head_nonmedis FROM company WHERE id = ?', array('1'))->row_array()['head_nonmedis'];
+		$director = $this->db->query('SELECT director FROM company WHERE id = ?', array('1'))->row_array()['director'];
+
 		if($id) {
 			$sql = "SELECT * FROM orders WHERE id = ?";
 			$query = $this->db->query($sql, array($id));
 			return $query->row_array();
 		}
 
-		if($user_id == "1"){
+		if($user_id == "1" || $user_id == $head_nonmed || $user_id == $director){
 			$sql = "SELECT * FROM orders ORDER BY id DESC";
 			$query = $this->db->query($sql, array($user_id));
 			return $query->result_array();

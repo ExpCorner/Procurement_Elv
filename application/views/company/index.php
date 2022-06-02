@@ -46,6 +46,24 @@
                   <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name" value="<?php echo $company_data['company_name'] ?>" autocomplete="off">
                 </div>
                 <div class="form-group">
+                  <label for="head_nonmedis">Head Non(Medis)</label>
+                  <select class="form-control" id="head_nonmedis" name="head_nonmedis">
+                    <option value="">Select User</option>
+                    <?php foreach ($users_data as $k => $v): ?>
+                      <option value="<?php echo $v['id'] ?>" <?php if($company_data['head_nonmedis'] == $v['id']) { echo 'selected'; } ?> ><?php echo $v['firstname'].' '.$v['lastname'] ?></option> 
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="director">Director</label>
+                  <select class="form-control" id="director" name="director">
+                    <option value="">Select User</option>
+                    <?php foreach ($users_data as $k => $v): ?>
+                      <option value="<?php echo $v['id'] ?>" <?php if($company_data['director'] == $v['id']) { echo 'selected'; } ?> ><?php echo $v['firstname'].' '.$v['lastname'] ?></option> 
+                    <?php endforeach ?>
+                  </select>
+                </div>
+                <div class="form-group">
                   <label for="service_charge_value">Charge Amount (%)</label>
                   <input type="text" class="form-control" id="service_charge_value" name="service_charge_value" placeholder="Enter charge amount %" value="<?php echo $company_data['service_charge_value'] ?>" autocomplete="off">
                 </div>
